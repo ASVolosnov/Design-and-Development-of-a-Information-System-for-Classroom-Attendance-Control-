@@ -1,0 +1,95 @@
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+
+#указываем какие экраны будут вызываться
+ScreenManagement:
+    transition: SlideTransition()
+    Screen2:
+    Screen1:
+    Screen3:
+    Screen4:
+    Screen5:
+
+#Окно меню для общения с пользователем
+<Screen2>:
+    name: "screen2"
+    #Записываем в тип расположения изображения для заставки
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+
+        Image:
+            source: 'Main.jpg'
+            size_hint: None, None
+            size: 800, 600
+            # size: self.texture_size[0] / 2, self.texture_size[1] / 2
+            # opacity: 0.1
+    #располагаем все кнопки, записывая их в коробку
+    FloatLayout:
+        Button:
+            #описываем события после нажатия кнопки
+            on_release:
+                app.root.current = "screen1"
+                app.root.transition = SlideTransition(direction="right")
+            size_hint: 0.3, 0.2
+            pos_hint: {"top": 0.9, "right": 0.3}
+            text: "Mathematical analysis"
+            font_size: 20
+        Button:
+            on_release:
+                app.root.current = "screen3"
+                app.root.transition = SlideTransition(direction="right")
+            size_hint: 0.3, 0.2
+            pos_hint: {"top": 0.6, "right": 0.3}
+            text: "Programming"
+            font_size: 20
+        Button:
+            on_release:
+                app.root.current = "screen4"
+                app.root.transition = SlideTransition(direction="right")
+            size_hint: 0.3, 0.2
+            pos_hint: {"top": 0.3, "right": 0.3}
+            text: "Data sciences"
+            font_size: 20
+        Button:
+            on_release:
+                app.root.current = "screen5"
+                app.root.transition = SlideTransition(direction="right")
+            size_hint: 0.3, 0.2
+            pos_hint: {"top": 0.6, "right": 1}
+            text: "All subjects "
+            font_size: 20
+
+#Окно предмета по мат. анализу
+#Все кнопки связанные с вызовами внутренних функции содержатсья внутри самого класс
+<Screen1>:
+    name: "screen1"
+    #Кнопка возврата в главное меню
+    FloatLayout:
+        Button:
+            on_release:
+                app.root.current = "screen2"
+                app.root.transition = SlideTransition(direction="left")
+            size_hint: 0.1, 0.1
+            pos_hint: {"top": 1, "right": 1}
+            text: "Return"
+            font_size: 15
+#Screen3 и Screen4 окна прдеметов по программированию и науки о данных
+#они являютя наследниками от Screen1 по этому несут тот же  функционал
+<Screen3>:
+    name: "screen3"
+
+<Screen4>:
+    name: "screen4"
+#Окно для просмотра всех предметов
+<Screen5>:
+    name: "screen5"
+    FloatLayout:
+        #Кнопка возврата
+        Button:
+            on_release:
+                app.root.current = "screen2"
+                app.root.transition = SlideTransition(direction="left")
+            size_hint: 0.1, 0.1
+            pos_hint: {"top": 1, "right": 1}
+            text: "Return"
+            font_size:15
